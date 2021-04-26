@@ -4,6 +4,7 @@
 \usepackage[polish, english]{babel}
 \usepackage[backend=bibtex, style=alphabetic, doi=false]{biblatex}
 \usepackage{tikz}
+\usetikzlibrary{arrows.meta}
 \usetikzlibrary{calc}
 \usepackage{pgfplots}
 \usepackage[labelfont={normalsize}]{caption,subfig}
@@ -12,6 +13,7 @@
 \usepackage{biblatex}
 \usepackage{cleveref}
 \usepackage[normalem]{ulem}
+\usepackage{comment}
 
 \bibliography{quadratic.bib}
 
@@ -28,15 +30,6 @@
 \DeclareMathOperator{\even}{even}
 \DeclareMathOperator{\rest}{rest}
 \DeclareMathOperator{\res}{\star}
-
-\newcommand{\successor}
-{
-	descendant
-}
-\newcommand{\successors}
-{
-	descendants
-}
 
 \newcommand{\nast}
 {
@@ -122,6 +115,63 @@
 		\label{fig:rysnormal}
 	}	
 }
+
+\newcommand{\reform}[1]
+{
+	\centering
+	\subfloat[]
+	{
+		\begin{tikzpicture}[scale=#1]
+			\punkty		
+			\prosto{d}{a}{black}
+			\lewo{a}{b}{35}{black}
+			\lewo{c}{a}{20}{black}
+			\prawo{c}{a}{40}{black}
+			\prawo{a}{b}{35}{black}
+			\wierzcholek{c}{white}{}{dol}
+			\wierzcholek{a}{black}{}{gora}
+			\wierzcholek{d}{white}{}{gora}
+			\wierzcholek{b}{white}{}{gora}
+			\draw[red,fill=black] (a) circle (0pt) node[above] at ($(-0.85,0.85)$) {\tiny \small $1$};
+			\draw[red,fill=black] (a) circle (0pt) node[above] at ($(-0.55,-0.9)$) {\tiny \small $2$};
+			\draw[red,fill=black] (a) circle (0pt) node[above] at ($(1.05,0.5)$) {\tiny \small $3$};
+			\draw[red,fill=black] (a) circle (0pt) node[above] at ($(0.45,-0.9)$) {\tiny \small $4$};
+			\draw[red,fill=black] (a) circle (0pt) node[above] at ($(0.2,0.3)$) {\tiny \small $5$};
+			
+			\draw[black,fill=black] (a) circle (0pt) node[above] at ($(3.5,1.5)$) {\tiny \small $\sigma_1=(1)(2\;4)(3\;5)$};
+			\draw[black,fill=black] (a) circle (0pt) node[above] at ($(3.3,0.8)$) {\tiny \small $\sigma_2=(1\;2\;5\;4\;3)$};
+			\draw[black,fill=black] (a) circle (0pt) node[above] at ($(3.5,0.1)$) {\tiny \small $\sigma_1 \sigma_2=(1\;2\;3\;4\;5)$};
+		\end{tikzpicture}
+		\label{fig:reformone}
+	}
+	\hfill
+	\subfloat[]
+	{
+		\begin{tikzpicture}[scale=#1]
+			\punkty		
+			\prosto{a}{b}{black}
+			\prosto{b}{c}{black}
+			\prosto{c}{d}{black}
+			\prosto{d}{a}{black}
+			\prawolewo{$(c)+(-0.07,0.07)$}{d}{90}{black}
+			\wierzcholek{a}{black}{}{gora}
+			\wierzcholek{c}{black}{}{dol}
+			\wierzcholek{b}{white}{}{gora}
+			\wierzcholek{d}{white}{}{gora}
+			\draw[red,fill=black] (a) circle (0pt) node[above] at ($(-0.95,0.75)$) {\tiny \small $1$};
+			\draw[red,fill=black] (a) circle (0pt) node[above] at ($(-0.8,-0.75)$) {\tiny \small $2$};
+			\draw[red,fill=black] (a) circle (0pt) node[above] at ($(0.45,0.7)$) {\tiny \small $3$};
+			\draw[red,fill=black] (a) circle (0pt) node[above] at ($(0.05,-1.4)$) {\tiny \small $4$};
+			\draw[red,fill=black] (a) circle (0pt) node[above] at ($(0.85,-1.4)$) {\tiny \small $5$};
+			
+			\draw[black,fill=black] (a) circle (0pt) node[above] at ($(-3.5,-0.9)$) {\tiny \small $\sigma_1=(1\;4\;2)(3\;5)$};
+			\draw[black,fill=black] (a) circle (0pt) node[above] at ($(-3.5,-1.6)$) {\tiny \small $\sigma_2=(1\;3)(2\;5\;4)$};
+			\draw[black,fill=black] (a) circle (0pt) node[above] at ($(-3.45,-2.3)$) {\tiny \small $\sigma_1 \sigma_2=(1\;2\;3\;4\;5)$};
+		\end{tikzpicture}
+		\label{fig:reformtwo}
+	}	
+}
+
 
 \newcommand{\punkty}
 {
@@ -235,7 +285,6 @@
 \draw[black,fill=#2] (#1) circle (5pt) node[above] at ($(#1)+(#4)$) {\tiny \large $#3$};
 }
 
-
 \newcommand{\ryschange}[1]
 {	
 	\centering
@@ -259,7 +308,7 @@
 			\wierzcholek{s2}{white}{\cdots}{dol}
 			\wierzcholek{s3}{white}{w_3}{dol}
 			\wierzcholek{s3}{white}{\cdots}{gora}
-			\wierzcholek{zero}{black}{b_0\Bigg)}{obok}
+			\wierzcholek{zero}{black}{c_0\Bigg)}{obok}
 			\wierzcholek{zero}{black}{\cdots}{gora}
 			\wierzcholek{zero}{black}{\cdots}{dol}
 			\wierzcholek{s1}{white}{w_1}{gora}
@@ -281,7 +330,7 @@
 			\wierzcholek{s2}{white}{w_2}{gora}
 			\wierzcholek{s3}{white}{w_3}{dol}
 			\wierzcholek{s3}{white}{\cdots}{gora}
-			\wierzcholek{zero}{black}{b_0\Bigg)}{$.2*(gora)+.8*(obok)$}
+			\wierzcholek{zero}{black}{c_0\Bigg)}{$.2*(gora)+.8*(obok)$}
 			\wierzcholek{zero}{black}{\cdots}{dol}
 			\wierzcholek{s1}{white}{w_1}{gora}
 		\end{tikzpicture}
@@ -322,6 +371,9 @@
 			\wierzcholek{c}{white}{w_3}{dol}
 			\wierzcholek{b}{white}{}{gora}
 			\wierzcholek{d}{white}{}{gora}
+			\kierunek{a}{$(-0.01,-0.39)$}{$(-0.08,-0.15)$}
+			\kierunek{a}{$(-0.27,-0.67)$}{$(-0.12,-0.12)$}
+			\kierunek{a}{$(0.5,-0.06)$}{$(0.08,-0.15)$}
 		\end{tikzpicture}
 		\label{fig:rysallb}
 	}
@@ -339,6 +391,8 @@
 			\wierzcholek{a}{black}{b}{gora}
 			\wierzcholek{d}{white}{}{gora}
 			\wierzcholek{b}{white}{}{gora}
+			\kierunek{a}{$(-0.22,-0.67)$}{$(-0.15,-0.08)$}
+			\kierunek{a}{$(+0.3,-0.43)$}{$(-0.08,-0.15)$}
 		\end{tikzpicture}
 		\label{fig:rysallc}
 	}
@@ -348,7 +402,7 @@
 		\begin{tikzpicture}[scale=#1]
 			\punkty		
 			\prosto{a}{b}{black}
-			\waskonieszerokodd{a}{c}{$.6*(b)+.4*(c)$}{blue}
+			\waskoszerokodd{a}{c}{$.6*(b)+.4*(c)$}{blue}
 			\prostodd{c}{a}{red}
 			\prosto{d}{a}{black}
 			\prawolewodd{c}{a}{30}{red}
@@ -356,6 +410,9 @@
 			\wierzcholek{c}{white}{w_3}{dol}
 			\wierzcholek{b}{white}{}{gora}
 			\wierzcholek{d}{white}{}{gora}
+			\kierunek{a}{$(-0.01,-0.39)$}{$(-0.08,-0.15)$}
+			\kierunek{a}{$(-0.27,-0.67)$}{$(-0.12,-0.12)$}
+			\kierunek{a}{$(0.18,-0.58)$}{$(0.15,-0.08)$}
 		\end{tikzpicture}
 		\label{fig:rysalld}
 	}
@@ -369,13 +426,16 @@
 			\punkty		
 			\prosto{a}{b}{black}
 			\prostodd{b}{c}{red}
-			\prostodd{c}{d}{red}
+			\prostodd{d}{c}{red}
 			\prosto{d}{a}{black}
 			\prawolewodd{c}{d}{55}{red}
 			\wierzcholek{a}{black}{b_2}{gora}
 			\wierzcholek{c}{black}{b_1}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{b}{$(-0.28,-0.41)$}{$(0.15, -0.08)$}
+			\kierunek{d}{$(0.29,-0.4)$}{$(0.12,0.12)$}
+			\kierunek{d}{$(0.02,-0.49)$}{$(0.15,0.08)$}
 		\end{tikzpicture}
 		\label{fig:rysodda}
 	}
@@ -393,6 +453,9 @@
 			\wierzcholek{c}{black}{b_1}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{$.5*(a)+.5*(b)$}{$(0.28,0.04)$}{$(-0.08,0.15)$}
+			\kierunek{$.5*(a)+.5*(d)$}{$(0.09,-0.36)$}{$(0.12,0.12)$}
+			\kierunek{$.5*(a)+.5*(d)$}{$(-0.13,-0.49)$}{$(0.15,0.08)$}
 		\end{tikzpicture}
 		\label{fig:rysoddb}
 	}
@@ -410,6 +473,9 @@
 			\wierzcholek{c}{black}{b_1}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{a}{$(-0.01,-0.39)$}{$(-0.08,-0.15)$}
+			\kierunek{a}{$(-0.27,-0.67)$}{$(-0.12,-0.12)$}
+			\kierunek{a}{$(0.5,-0.06)$}{$(0.08,-0.15)$}
 		\end{tikzpicture}
 		\label{fig:rysoddc}
 	}
@@ -427,6 +493,9 @@
 			\wierzcholek{c}{white}{w_3}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{a}{$(-0.01,-0.39)$}{$(-0.08,-0.15)$}
+			\kierunek{a}{$(-0.27,-0.67)$}{$(-0.12,-0.12)$}
+			\kierunek{a}{$(0.5,-0.06)$}{$(0.08,-0.15)$}
 		\end{tikzpicture}
 		\label{fig:rysoddd}
 	}
@@ -449,6 +518,8 @@
 			\wierzcholek{c}{black}{b_1}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{d}{$(0.25,-0.45)$}{$(0.17,0)$}
+			\kierunek{b}{$(-0.23,0.32)$}{$(-0.12,-0.12)$}
 		\end{tikzpicture}
 		\label{fig:rysevena}
 	}
@@ -466,6 +537,8 @@
 			\wierzcholek{c}{black}{b_1}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{$0.5*(c)+0.2*(d)$}{$(-0.29,-0.01)$}{$(0,-0.17)$}
+			\kierunek{$0.5*(b)+0.2*(c)$}{$(-0.08,-0.24)$}{$(-0.12,-0.12)$}
 		\end{tikzpicture}
 		\label{fig:rysevenb}
 	}
@@ -483,6 +556,8 @@
 			\wierzcholek{c}{black}{b_1}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{c}{$(0.22,0.67)$}{$(0.15,0.08)$}
+			\kierunek{c}{$(-0.3,0.43)$}{$(0.08,0.15)$}
 		\end{tikzpicture}
 		\label{fig:rysevenc}
 	}
@@ -500,6 +575,8 @@
 			\wierzcholek{c}{black}{b}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{c}{$(0.22,0.67)$}{$(0.15,0.08)$}
+			\kierunek{c}{$(-0.3,0.43)$}{$(0.08,0.15)$}
 		\end{tikzpicture}
 		\label{fig:rysevend}
 	}
@@ -514,13 +591,16 @@
 			\punkty		
 			\prosto{a}{b}{black}
 			\prostodd{b}{c}{blue}
-			\prostodd{c}{d}{red}
+			\prostodd{d}{c}{red}
 			\prosto{d}{a}{black}
 			\prawolewodd{c}{d}{55}{red}
 			\wierzcholek{a}{black}{b_2}{gora}
 			\wierzcholek{c}{black}{b_1}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{b}{$(-0.29,-0.42)$}{$(-0.08, 0.15)$}
+			\kierunek{d}{$(0.29,-0.4)$}{$(0.12,0.12)$}
+			\kierunek{d}{$(0.02,-0.49)$}{$(0.15,0.08)$}
 		\end{tikzpicture}
 		\label{fig:rysresta}
 	}
@@ -537,7 +617,9 @@
 			\wierzcholek{a}{black}{b_2}{gora}
 			\wierzcholek{c}{black}{b_1}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
-			\wierzcholek{d}{white}{w_1}{gora}
+			\wierzcholek{d}{white}{w_1}{gora}\kierunek{$.5*(a)+.5*(d)$}{$(0.09,-0.36)$}{$(0.12,0.12)$}
+			\kierunek{$.5*(a)+.5*(d)$}{$(-0.13,-0.49)$}{$(0.15,0.08)$}
+			\kierunek{$.5*(a)+.5*(b)$}{$(0.02,-0.42)$}{$(-0.08, 0.15)$}
 		\end{tikzpicture}
 		\label{fig:rysrestb}
 	}
@@ -547,7 +629,7 @@
 		\begin{tikzpicture}[scale=#1]
 			\punkty		
 			\prosto{a}{b}{black}
-			\waskonieszerokodd{a}{c}{$.6*(b)+.4*(c)$}{blue}
+			\waskoszerokodd{a}{c}{$.6*(b)+.4*(c)$}{blue}
 			\prostodd{c}{a}{red}
 			\prosto{d}{a}{black}
 			\prawolewodd{c}{a}{30}{red}
@@ -555,6 +637,9 @@
 			\wierzcholek{c}{black}{b_1}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{a}{$(-0.01,-0.39)$}{$(-0.08,-0.15)$}
+			\kierunek{a}{$(-0.27,-0.67)$}{$(-0.12,-0.12)$}
+			\kierunek{a}{$(0.18,-0.58)$}{$(0.15,-0.08)$}
 		\end{tikzpicture}
 		\label{fig:rysrestc}
 	}
@@ -572,9 +657,17 @@
 			\wierzcholek{c}{white}{w_3}{dol}
 			\wierzcholek{b}{white}{w_2}{gora}
 			\wierzcholek{d}{white}{w_1}{gora}
+			\kierunek{a}{$(-0.01,-0.39)$}{$(-0.08,-0.15)$}
+			\kierunek{a}{$(-0.27,-0.67)$}{$(-0.12,-0.12)$}
+			\kierunek{a}{$(0.18,-0.58)$}{$(0.15,-0.08)$}
 		\end{tikzpicture}
 		\label{fig:rysrestd}
 	}
+}
+
+\newcommand{\kierunek}[3]
+{
+	 \draw [-{Triangle[angle=60:0.7mm]}] ($(#1)+(#2)$) -- ($(#1)+(#2)+(#3)$);
 }
 
 \newcommand{\sliding}[1]
@@ -595,6 +688,9 @@
 			\wierzcholek{a}{black}{}{gora}
 			\wierzcholek{b}{black}{}{gora}
 			\wierzcholek{d}{black}{}{$(dol)+(-0.2,0.0)$}
+			\kierunek{d}{$(0.04,0.48)$}{$(0.17,0)$}
+			\kierunek{d}{$(0.29,0.41)$}{$(0.17,0)$}
+			\kierunek{d}{$(0.5,-0)$}{$(0.15,-0.08)$}
 		\end{tikzpicture}
 		\label{fig:rysprzed}
 	}
@@ -613,6 +709,9 @@
 			\wierzcholek{a}{black}{}{gora}
 			\wierzcholek{b}{black}{}{gora}
 			\wierzcholek{d}{black}{}{$(dol)+(-0.2,0.0)$}
+			\kierunek{$(d)+(0.7,0.23)$}{$(-0.04,0.28)$}{$(0.12,0.12)$}
+			\kierunek{$(d)+(0.7,0.23)$}{$(0.11,0.26)$}{$(0.17,0)$}
+			\kierunek{$(d)+(0.7,-0.23)$}{$(0.27,0.17)$}{$(0.17,0)$}
 		\end{tikzpicture}
 		\label{fig:rysw}
 	}
@@ -631,6 +730,10 @@
 			\wierzcholek{a}{black}{}{gora}
 			\wierzcholek{b}{black}{}{gora}
 			\wierzcholek{d}{black}{}{$(dol)+(-0.2,0.0)$}
+			\wierzcholek{d}{black}{}{$(dol)+(-0.2,0.0)$}
+			\kierunek{b}{$(-0.45,0.2)$}{$(-0.12,-0.12)$}
+			\kierunek{b}{$(-0.29,0.41)$}{$(-0.12,-0.12)$}
+			\kierunek{b}{$(0.24,0.34)$}{$(-0.12,0.12)$}
 		\end{tikzpicture}
 		\label{fig:ryspo}
 	}
@@ -669,9 +772,9 @@
 \abstract{ Goulden--Rattan polynomials give 
 the exact value of the subdominant part of 
 the normalized characters of the symmetric 
-groups in terms of certain quantities $(C_i)$. 
-%which describe the macroscopic shape of the 
-%Young diagram. 
+groups in terms of certain quantities $(C_i)$ 
+which describe the macroscopic shape of the 
+Young diagram. 
 The Goulden--Rattan positivity 
 conjecture states that the coefficients of 
 these polynomials are positive rational 
@@ -679,16 +782,17 @@ numbers with small  denominators. We prove
 a special case of this conjecture for the 
 coefficient of the quadratic term $C_2^2$ by 
 applying certain bijections involving maps 
-(i.e. graphs drawn on surfaces).}
+(i.e., graphs drawn on surfaces).}
 
 \keywords{characters of the symmetric groups, 
 free cumulants, Kerov polynomials, 
 Goulden--Rattan polynomials, maps}
 
 \begin{document}
+
 \maketitle
 
-\newpage
+%\newpage
 
 \section{Introduction}
 
@@ -743,7 +847,7 @@ tends to infinity \cite{Bia98}.
 
 \subsection{Kerov character polynomials}
 
-Kerov formulated the following result: 
+Kerov \cite{Ker00} formulated the following result: 
 for each permutation $\pi$ and any Young
 diagram $\lambda$, the normalized 
 character $\Sigma_{\pi}(\lambda)$ is 
@@ -775,7 +879,7 @@ K_7&=R_8+180R_2+224R_2^2+14R_2^3+56R_3^2+469R_4+84R_2R_4+70R_6.
 \end{align*}
 
 Kerov conjectured that the coefficients of 
-the polynomial $K_k$ are non-negative integers.
+the polynomial $K_k$ are \emph{non-negative} integers.
 Goulden and Rattan \cite{GR05} found an explicit 
 formula for the coefficients of the Kerov
 polynomial $K_k$; unfortunately, their formula 
@@ -786,7 +890,7 @@ with Dołęga and Śniady found a combinatorial
 interpretation of the coefficients \cite{DFS10}.
 In this paper, we will use the combinatorial
 interpretation given by them in the special case 
-for linear and square coefficients.
+of linear and square coefficients.
 
 
 \subsection{Goulden--Rattan conjecture}
@@ -795,7 +899,7 @@ Goulden and Rattan \cite{GR05} introduced
 a family of functions $C_2,C_3,\dots$ on 
 the set of Young diagrams given by
 $C_0=1$, $C_1=0$ and
-$$C_k^{\lambda}=\frac{24}{k(k+1)(k+2)}\lim_{s\to\infty}\frac{1}{s^k}\big(\Sigma_{k+1}^{s\lambda}-\Sigma_{k+2}^{s\lambda}\big)$$
+$$C_k^{\lambda}=\frac{24}{k(k+1)(k+2)}\lim_{s\to\infty}\frac{1}{s^k}\Big(\Sigma_{k+1}(s\lambda)-R_{k+2}(s\lambda)\Big)$$
 for $k\geq2$.
 
 Śniady \cite{Sni06} proved the explicit form of $C_k$
@@ -842,14 +946,14 @@ scaled coefficients of the Kerov polynomial:
 \[ [ C_j ] L_k=\frac{1}{j-1} [ R_j ] K_k. \]
 
 In this paper we will prove that the coefficient 
-of $C_2^2$ is non-negative. Using the same methods 
-we plan to prove in the future that 
-any square coefficients $[ C_i C_j ] L_k$ is 
-non-negative. The next step towards the proof of 
+of $C_2^2$ is non-negative. We hope that edge sliding 
+will also be useful tool in proving non-negativity of 
+the square coefficients $[ C_i C_j ] L_k$.
+The next step towards the proof of 
 Goulden--Rattan conjecture would be to understand 
 the cubic coefficients $ [ C_i C_j C_u ] L_k$; we 
 hope that our methods will still be applicable there,
-nevertheless there seem to be some difficulties 
+nevertheless, there seem to be some difficulties 
 related to the inclusion-exclusion principle.
 
 \subsection{Graphs on surfaces, maps and expanders}
@@ -859,21 +963,21 @@ surface. Each face of such a graph has some
 number of edges ordered cyclically by going 
 along the boundary of the face  and touching 
 it with the right hand. We will call it 
-\emph{clockwise direction}. If we use the left hand 
+\emph{clockwise boundary direction}. If we use the left hand 
 and visit the edges in the opposite order, we 
-will call it {counterclockwise direction}. 
+will call it {counterclockwise boundary direction}. 
 
 By \emph{a map} we mean a bipartite 
 graph drawn without intersections on an oriented 
 and connected surface with minimal genus. The maps 
-which we consider have fixed a choice of colouring 
-the vertices. , i.e., each 
+which we consider have a fixed choice of colouring 
+the vertices, i.e., each 
 vertex is coloured black or white, with the edges
 connecting the vertices of the opposite colours. 
 An example of a map is shown in \cref{fig:mapa}.
 
-\begin{figure}
-\torus{0.65}{1.0}[H]
+\begin{figure}[H]
+\torus{0.65}{1.0}
 \caption
 {
 	\protect\subref{fig:rystorus} 
@@ -941,8 +1045,8 @@ The expanders are a graphical interpretation
 of these pairs of permutations.
 There is a natural bijection between such 
 pairs of permutations $(\sigma_1,
-\sigma_2)$ and the expanders with $1$ face, 
-$1$ black vertex, $l-1$ white
+\sigma_2)$ and the expanders with one face, 
+one black vertex, $l-1$ white
 vertices and $k$ edges. Additionally, one edge 
 is selected as the root and the unique black 
 vertex has a weight $l-1$. More precisely:
@@ -952,21 +1056,23 @@ vertex has a weight $l-1$. More precisely:
 \item The edges are numbered $1, 2, \dots, k$.
 The edge with number $1$ is selected as the root.
 
-\item \emph{The clockwise angular order of the 
-edges on a given vertex} (i.e. order of edges 
-ending at this vertex around it) correspond to 
+\item \emph{The counterclockwise angular cyclic order of the 
+edges on a given vertex} (i.e., the order of edges 
+ending at this vertex around it) corresponds to 
 a cycle of a permutation
-depending on the colour of this vertex, i.e. 
+depending on the colour of this vertex, i.e., 
 $\sigma_1$ for white and $\sigma_2$ for black
-(in this case we have unique cycle of 
+(in this case we have a unique cycle of 
 the permutation $\sigma_2$). 
 
 \item The unique face corresponds to the unique 
+counterclockwise boundary
 cycle of the permutation $(1, 2, \ldots, k)$.
 
 \end{itemize}
 Since there is only one face, the root determines the 
-numbering of all edges. We can reformulate \cref{thm1}.
+numbering of all edges. We can reformulate \cref{thm1} as follows. 
+(See \cref{fig:reformone} for an example.)
 \begin{theorem}
 \label{thm2}
 For all integers $l\geq2$ and $k\geq 1$ the 
@@ -974,7 +1080,27 @@ coefficient $[R_l] K_k$ is equal to the number
 of expanders with $k$ edges, $l-1$ white vertices 
 and $1$ black vertex with the weight $l-1$.
 \end{theorem}
-Similarly we use the second theorem for square coefficients.
+
+\begin{figure}[H]
+\reform{1.05}
+\caption
+{
+		Examples of expander with $5$ edges and 
+		their corresponding pair of permutations 
+		$\sigma_1, \sigma_2$ such that 
+		$\sigma_1 \sigma_2 = (1 \; 2\; 3 \; 4 \; 5)$. 
+		The root is assigned the number $1$. 
+		\protect\subref{fig:reformone} 
+		The expander with one black vertex 
+		and three white vertices. 
+		\protect\subref{fig:reformtwo}
+		The expander with two black vertices 
+		and two white vertices.
+}
+\end{figure}
+
+Similarly we use the second theorem \cite[Theorem 1.3]{DFS10} 
+for square coefficients.
 \begin{theorem}
 \label{thm3}
 For all integers $l_1, l_2\geq 2$ and $k\geq 1$ 
@@ -983,21 +1109,21 @@ to the number of triples $(\sigma_1, \sigma_2, q)$
 with the following properties.
 \begin{itemize}
 
-\item $\sigma_1, \sigma_2 \in S_k$ 
-and $\sigma_1\circ\sigma_2=(1,2,\cdots, k)$.
+\item The permutations $\sigma_1, \sigma_2 \in S_k$ 
+fulfill the equality $\sigma_1\circ\sigma_2=(1,2,\cdots, k)$.
 
-\item $\sigma_1$ consists of two cycles and 
-$\sigma_2$ consists of $l_1+l_2-2$ cycles.
+\item The permutation $\sigma_1$ consists of two cycles and 
+the permutation $\sigma_2$ consists of $l_1+l_2-2$ cycles.
 
 \item The function $q$ associates the numbers 
-$l_1$ and $l_2$ to the cycles of $\sigma_2$ 
-such that for a cycle of $\sigma_2$ with number 
-$l$ exist 
-at least $l$ cycles of $\sigma_1$ which 
-intersect nontrivially this cycle.
+$l_1$ and $l_2$ to the two cycles of $\sigma_2$. 
+Furthermore, for each cycle $c$ of $\sigma_2$ there 
+exist at least $q(c)$ cycles of $\sigma_1$ which 
+intersect nontrivially $c$.
 \end{itemize}
 \end{theorem}
-Similarly, we can also reformulate  \cref{thm3}.
+Analogously, we can also reformulate \cref{thm3}. 
+(See \cref{fig:reformtwo} for an example.)
 \begin{theorem}
 \label{thm4}
 For all integers $l_1, l_2\geq 2$ and $k\geq 1$ 
@@ -1014,13 +1140,12 @@ and coefficients of Kerov polynomials}
 The formula \eqref{cformula} allows us to 
 express $(C_i)$ in terms of free cumulants;
 we see that the coefficients of the terms 
-$R_i R_j$ and $R_{i+j}$ in the expressions
-$C_{i} C_{j}$ and $C_{i+j}$ are given by
+$R_i R_j$, $R_{i+j}$ and $R_{2j}$ in the expressions
+$C_{i} C_{j}$, $C_{i+j}$ and $C_{2j}$ are given for $i \neq j$ by
 \begin{align*}
 C_i C_j &= (i-1)(j-1) R_i R_j + 0  R_{i+j} + \text{(sum of other terms)},\\
-C_{i+j} &=2(i-1)(j-1)R_iR_j+(i+j-1)R_{i+j}+\text{(sum of other terms)}, 
-\qquad \text{for $i\neq j$.}\\
-C_{2j} &=(j-1)^2R_j^2+(2j-1)R_{2j}+\text{(sum of other terms)} 
+C_{i+j} &=2(i-1)(j-1)R_iR_j+(i+j-1)R_{i+j}+\text{(sum of other terms)},\\
+C_{2j} &=(j-1)^2R_j^2+(2j-1)R_{2j}+\text{(sum of other terms)}. 
 \end{align*}
 Moreover, any product $C_{i_1} C_{i_2}\cdots C_{i_t}$
 of at least $t\geq 3$ factors does not contain any 
@@ -1033,16 +1158,17 @@ to the coefficients of the Kerov polynomial via
 &=\frac{1}{(i-1)(j-1)}\frac{\partial^2K_k}{\partial{R_i}\partial{R_j}}\Bigg|_{0=R_1=R_2=\cdots}
 -2\frac{\partial L_k}{\partial{C_{i+j}}}\Bigg|_{0=C_1=C_2=\cdots}\\
 &=\frac{1}{(i-1)(j-1)}\frac{\partial^2K_k}{\partial{R_i}\partial{R_j}}\Bigg|_{0=R_1=R_2=\cdots}
--\frac{2}{(i+j-1)}\frac{\partial K_k}{\partial{R_{i+j}}}\Bigg|_{0=R_1=R_2=\cdots};
+-\frac{2}{(i+j-1)}\frac{\partial K_k}{\partial{R_{i+j}}}\Bigg|_{0=R_1=R_2=\cdots}
 \end{align*}
-Whereas the quadratic coefficients are related via
+for $i \neq j$. Whereas the quadratic coefficients are related via
 \begin{align*}
 \frac{\partial^2L_k}{\partial{C_j^2}}\Bigg|_{0=C_1=C_2=\cdots}
 &=\frac{1}{(j-1)^2}\frac{\partial^2K_k}{\partial{R_j^2}}\Bigg|_{0=R_1=R_2=\cdots}
 -\frac{\partial L_k}{\partial{C_{2j}}}\Bigg|_{0=C_1=C_2=\cdots}\\
 &=\frac{1}{(j-1)^2}\frac{\partial^2K_k}{\partial^2{R_j}}\Bigg|_{0=R_1=R_2=\cdots}
--\frac{1}{(2j-1)}\frac{\partial K_k}{\partial{R_{2j}}}\Bigg|_{0=R_1=R_2=\cdots};
+-\frac{1}{(2j-1)}\frac{\partial K_k}{\partial{R_{2j}}}\Bigg|_{0=R_1=R_2=\cdots}
 \end{align*}
+for any natural number $j$.
 Thus, we obtain the explicit formula for 
 the square coefficients of the Goulden–Rattan polynomial:
 \begin{align}
@@ -1096,7 +1222,7 @@ the Goulden--Rattan polynomials
 [C_2^2] L_8 &=0-0=0. 
 \end{align*}
 Note that if $k$ is even then $[C_2^2] L_k=0$ because there does not exist an expander with $4$ vertices and an even number of edges, since
-$2-2g=2j-k+1$ by \cref{euler}. Thus we can assume that the number of edges $k$ is odd and $k \geq 5$. 
+$2-2g=2j-k+1$ by \cref{euler}. Additionally, also $[C_2^2]L_1=0$ and $[C_2^2]L_3=0$. Thus we can assume that the number of edges $k$ is odd and $k \geq 5$. 
 
 Let 
 \begin{align}
@@ -1126,7 +1252,7 @@ $$3\big\|X_k\big\| \geq \big\|Y_k\big\|$$
 is true for any natural number $k$.
 \end{theorem}
 
-\section{Maps, Expanders, and edge sliding}
+\section{Maps, expanders, and edge sliding}
 
 In this section we provide some necessary 
 background details for the proof of \cref{mainthm2}.
@@ -1139,9 +1265,9 @@ $G$ drawn on an oriented and connected
 surface with a selected 
 set of \emph{special edges}. 
 Further, we assume that some ends 
-(at the vertices) of  special edges 
+(at the vertices) of the special edges 
 (not necessarily all) are assigned either 
-the clockwise or counterclockwise direction.
+the clockwise or counterclockwise boundary direction.
 
 By \emph{the rest of the graph $G^{\res}$} we 
 will understand the graph $G$ with the 
@@ -1150,23 +1276,24 @@ is drawn on the same surface, even if
 its genus is not minimal. A 
 \emph{corner} of $G^{\res}$ is an inner angle 
 in a vertex between two neighboring 
-edges of $G^{\res}$. All ends of the special 
-edges are located inside certain 
-corners of $G^{\res}$.
+edges of $G^{\res}$ (or full angle for the 
+degenerate case of no edge in a vertex). 
+All ends of the special edges are located 
+inside certain corners of $G^{\res}$.
 
 Let $\sigma_{\res}$ be the permutation 
 on the set of the corners of $G^{\res}$ 
 such that each cycle of $\sigma_{\res}$
 corresponds to the corners which belong 
 to some face of $G^{\res}$, arranged in 
-the clockwise cyclic order (i.e., by 
+the clockwise boundary cyclic order (i.e., by 
 going along the boundary of the face of
 $G^{\res}$, touching it with the 
-right-hand side). For the example on
+right hand). For the example on
 \cref{fig:rysnum} we have 
 $\sigma_{\res} = ( 1' )( 1, 2, 3, 4, 5, 6).$
 
-\begin{figure}
+\begin{figure}[H]
 \sliding{0.95}
 \caption
 {
@@ -1174,14 +1301,16 @@ $\sigma_{\res} = ( 1' )( 1, 2, 3, 4, 5, 6).$
 	\protect\subref{fig:rysprzed} 
 		A graph with the special 
 		edges dashed and coloured red.
+		The directions of the edge 
+		ends are indicated by arrows.
 	\protect\subref{fig:rysw} 
 		The graph during the edge 
-		sliding. Both ends of each 
-		special edge are assigned 
-		the clockwise direction.
+		sliding in the clockwise 
+		boundary direction. 
 	\protect\subref{fig:ryspo} 
 		The graph after the edge 
-		sliding.
+		sliding. Directions have 
+		already been reversed.
 	\protect\subref{fig:rysnum} 
 		The graph without the
 		special edges with the 
@@ -1192,74 +1321,81 @@ $\sigma_{\res} = ( 1' )( 1, 2, 3, 4, 5, 6).$
 
 We assume that each corner of the 
 graph $G^{\res}$ contains the ends 
-of the ends of special edges in the 
-following  counterclockwise angular 
+of the special edges in the 
+following counterclockwise angular 
 order.  
 \begin{itemize}
 
 \item First, some number of the 
-		ends of special edges 
+		ends of the special edges 
 		with the clockwise 
-		direction.
+		boundary direction.
 
 \item Second, some number of the 
-		ends of special edges with 
+		ends of the special edges with 
 		no assigned direction. 
 \item Finally, some number of the
-		ends of special edges with 
+		ends of the special edges with 
 		the counterclockwise 
-		direction. 
+		boundary direction. 
 \end{itemize}  
 Furthermore, we assume that there is no 
 corner $c$ of $G^{\res}$ such that the corner 
-$c$ contains the end of the special 
-edge with the direction clockwise and 
+$c$ contains the end of a special 
+edge with the clockwise boundary direction and 
 the corner $\sigma_{\res}(c)$ contains the end 
-of the  special edge with the direction 
-counterclockwise.
+of a special edge with the  
+counterclockwise boundary direction 
+(see \cref{fig:rysprzed} for an example).
 
 The output of the edge sliding is defined 
 as the graph $G$ in which the ends of the 
 special edges in a corner $c$ which have 
-an assigned direction are slid to the 
-next corner $\sigma_{\res}(c)$ if the direction 
-is clockwise and to the previous corner 
-$\sigma_{\res}^{-1}(c)$ if the direction is 
-counterclockwise (see \cref{fig:sliding} 
-for an example). More precisely, after 
-the edge sliding each corner $c$ contains 
-the ends of special edges in the following 
+an assigned clockwise boundary direction 
+are slid to the next corner $\sigma_{\res}(c)$. 
+However the ends of the special edges which have 
+an assigned counterclockwise boundary direction 
+are slid to the previous corner $\sigma_{\res}^{-1}(c)$. 
+Moreover, the output of the edge sliding
+has opposite assignments of directions to
+both ends of each special edge. \cref{fig:sliding} 
+shows an example of the edge sliding. Note that 
+in the degenerate case of only special edges in a vertex 
+(like at the corner $1'$ in the picture \cref{fig:rysnum}), 
+sliding does never really not occur.
+
+More precisely, after the edge sliding each corner $c$ 
+contains the ends of special edges in the following 
 counterclockwise angular order.  
 \begin{itemize}
 
 \item First, some number of the ends 
-		of special edges which 
+		of special edges with the clockwise
+		boundary direction which 
 		previously appeared in the 
-		same order in the corner 
-		$\sigma_{\res}^{-1}(c)$
-		with the counterclockwise 
+		same angular order in the corner 
+		$\sigma_{\res}(c)$
+		with the counterclockwise boundary
 		direction.
 \item Second, some number of the ends 
 		of special edges which 
 		previously appeared in the 
-		same order in the corner $c$
+		same angular order in the corner $c$
 		without the direction. 
 \item Finally, some number of the ends 
-		of special edges which previously 
-		appeared in the same order 
-		in the corner $\sigma_{\res}(c)$
-		with the clockwise direction.
+		of special edges with counterclockwise 
+		boundary direction which previously 
+		appeared in the same angular order 
+		in the corner $\sigma_{\res}^{-1}(c)$
+		with the clockwise boundary direction.
 \end{itemize}  
-Moreover, the output of the edge sliding
-has opposite assignments of directions to
-both ends of each special edge.
 
-The edge sliding is a bijection from the 
+The edge sliding is an involution on the 
 set of graphs drawn on an oriented and 
 connected surface with a selected set of 
-special edges which satisfy the edge sliding 
-conditions to itself. Edge sliding is an 
-invertible transformation, with the inverse 
+special edges which satisfy the above conditions 
+for correct selection of directions. Edge sliding 
+is an invertible transformation, with the inverse 
 also given by edge sliding. 
 
 In addition, it is easy to see that the 
@@ -1269,8 +1405,8 @@ the number of faces of this graph.
 
 \subsection{The set $X_k$ of maps} 
 
-We consider any map from the set $X_k$ 
-of maps. Any such map has one face 
+We consider any map from the set $X_k$. 
+This map has one face 
 and an odd number of edges $k \geq 5$. 
 We denote the black vertices by 
 $b_1, b_2$ and the white vertices by 
@@ -1286,7 +1422,7 @@ denote the numbers of edges which
 connect the vertex $b_1$ with the 
 vertices $w_1, w_2$, respectively. 
 As $\degg(b_1)=k_1+k_2$ is 
-an odd number, then without loss of  
+an odd number, without loss of  
 generality we may assume that $k_1$ 
 is even and $k_2$ is odd. For example, 
 the unique (up to choice of the root) 
@@ -1302,8 +1438,9 @@ Examples of maps from the sets
 \protect\subref{fig:rysallb}  $T_{5}^{\odd}$,
 \protect\subref{fig:rysallc}  $T_{5}^{\even}$,
 \protect\subref{fig:rysalld}  $T_{5}^{\rest}$.
-The root and the directions are not marked
-(the blue edge is assigned the opposite direction).
+Special edges are dashed and coloures. 
+The directions are indicated by arrows, and 
+the root is not marked.
 }
 \label{fig:rysrest}
 \end{figure}
@@ -1311,15 +1448,14 @@ The root and the directions are not marked
 \subsection{The set $Y_k$ of maps}
 
 Let $\sigma$ be the cycle that encodes 
-the permutation of corners on the
-unique face of $G$ 
-(this is just $\sigma_{\res}$ for $G^{\res}$ with no
-special edges).
- We will say 
-that \emph{the vertex $w_j$ is the 
-\successor of the vertex $w_i$} 
+the clockwise boundary cyclic order of the 
+corners on the unique face of $G$ 
+(this is just $\sigma_{\res}$ for $G^{\res}$ 
+with no special edges). We will say 
+that \emph{the vertex $w_j$ is a
+descendant of the vertex $w_i$} 
 (we denote it by $w_i \rightarrow w_j$) 
-if using the clockwise order of 
+if using the clockwise boundary order of 
 the corners on the unique face of the 
 map we can move (by walking along the 
 edges and holding them with the right 
@@ -1338,20 +1474,20 @@ sets which will be defined below.
 
 Let $Y_{k}^{\odd}\subseteq Y_k$ be the 
 set of maps for which there exists an
-odd degree white vertex (let us say it 
+\emph{odd degree} white vertex (let us say it 
 is $w_3$) which has the other two white
-vertices as \successors, i.e., 
+vertices as descendants, i.e., 
 $w_3\rightarrow w_1$ and 
 $w_3\rightarrow w_2$. 
 Let $T_k^{\odd}$ be the set of all 
 maps from the set $Y_k^{\odd}$ with a 
 distinguished vertex $w_3$ with this 
-property and a fixed set of edges of 
-the vertex $w_3$ as the set of special 
-edges, such that the edge ends at the 
+property. Moreover, the set of edges of 
+the vertex $w_3$ is fixed as the set of special 
+edges. In addition, the edge ends at the 
 vertex $w_3$ have no assigned direction, 
 and the edge ends at the vertex $b$ have 
-assigned clockwise direction.
+assigned clockwise boundary direction.
 The unique (up to choice of the root) 
 map from the set $T_{5}^{\odd}$ is 
 shown in \cref{fig:rysallb}. Clearly
@@ -1362,21 +1498,21 @@ shown in \cref{fig:rysallb}. Clearly
 
 Let $Y_{k}^{\even}\subseteq Y_k$ be 
 the set of maps such that there
-exists an even degree white vertex 
+exists an \emph{even degree} white vertex 
 (let us say it is $w_3$) which has 
 the other two white vertices as 
-\successors, i.e., 
+descendants, i.e., 
 $w_3\rightarrow w_1$ and 
 $w_3\rightarrow w_2$. 
 Let $T_k^{\even}$ be the set of all  
 the maps from the set $Y_k^{\even}$ 
 with a distinguished vertex $w_3$ with 
-this property and a fixed set of edges 
-of the vertex $w_3$ as the set of special 
-edges, such that the edge ends at the 
+this property. Moreover, the set of edges 
+of the vertex $w_3$ is fixed as the set of special 
+edges. In addition, the edge ends at the 
 vertex $w_3$ have no assigned direction, 
 and the edge ends at the vertex $b$ have 
-assigned clockwise direction. 
+assigned clockwise boundary direction. 
 The unique (up to choice of 
 the root) map from the set $T_{5}^{\even}$ 
 is shown in \cref{fig:rysallc}. Clearly
@@ -1388,7 +1524,7 @@ is shown in \cref{fig:rysallc}. Clearly
 Let $Y_{k}^{\rest}\subseteq Y_k$ be 
 the set of maps not included in the
 sets $Y_{k}^{\odd}$ and 
-$Y_{k}^{\even}$, i.e. 
+$Y_{k}^{\even}$, i.e.,
 \begin{align}
 \label{yrestdef}
 Y_{k}^{\rest}=Y_k 
@@ -1427,13 +1563,14 @@ unique corner which we denote by $c_1$.
 
 Naturally $\nast^2(c_1)$ is a corner of 
 the vertex $w_2$. Note that $\nast^2$ 
-is a permutation of the corners of 
-the white vertices which has only one 
-cycle. The corners of the white vertices 
+is a permutation of the corners of the 
+white vertices which has only one cycle, 
+because the map $m$ has only one face. 
+The corners of the white vertices 
 can be labelled 1, 2, 3 according to 
 the names of the vertices 
 they are in. If a corner $c$ has the 
-label $a$, its \successor $\nast^2(c)$ 
+label $a$, its descendant $\nast^2(c)$ 
 has either the label $a$ or 
 $1+a \operatorname{mod} 3$. 
 There is only one corner which has the 
@@ -1444,28 +1581,34 @@ $(1, 2, \ldots, 2, 3, \ldots, 3)$. Since
 there exists only one corner $c_2$ of the 
 white vertex $ w_2 $ such that 
 $\nast^2(c_2)$ is a corner of the vertex 
-$w_3$, then the clockwise angular cyclic 
+$w_3$, then there exists a unique corner 
+$c_0=\nast(c_2)$ of the vertex $b$ such that 
+$\nast(c_0)$ is the corner of the vertex $w_3$ 
+and $\nast^{-1}(c_0)$ is the corner of the 
+vertex $w_2$. Thus the clockwise angular cyclic 
 order of the edges around the black vertex 
 $b$ is as follows: one edge connected to 
 the vertex $w_1$, a certain number of edges 
 connected to the vertex $w_2$, a certain 
-number of edges connected to the vertex $w_3$, 
-as there exists a unique corner $c_0=\nast(c_2)$
-of the vertex $b$ such that $\nast(c_0)$ is the 
-corner of the vertex $w_3$ and $\nast^{-1}(c_0)$ 
-is the corner of the vertex $w_2$. 
+number of edges connected to the vertex $w_3$.
+\cref{fig:ryschangea} visualizes this situation.
+
 \begin{figure}[H]
 \ryschange{0.95}
 \caption
 { 
-\protect\subref{fig:ryschangea} The picture before replace 
-\protect\subref{fig:ryschangeb} The picture after replace  
+\protect\subref{fig:ryschangea} The map $m$ before replace 
+								including the marked corner $c_0$. 
+\protect\subref{fig:ryschangeb} A non-existent hypothetical map 
+								with four vertices and an even
+								number of edges. 
 }
-\label{fig:rysrest}
+\label{fig:ryschange}
 \end{figure}
 It is easy to see that we can replace all 
 edges of the white vertex $w_2$ by a single 
-edge and get a map with $4$ vertices, one 
+edge (see \cref{fig:ryschange}) and get a map 
+with $4$ vertices, one 
 face and an even number of edges. We get a 
 contradiction, because such a map does not 
 exist (see \cref{euler}). Therefore, the
@@ -1473,23 +1616,25 @@ map $m$ has a white vertex with an odd
 degree greater than $1$.
 \end{proof}
 
-We now fix as special the set of edges between 
-the vertices $b$ and $w_3$.
-Furthermore the ends of special edges in the
+\pagebreak[1]
+
+We now fix all edges between 
+the vertices $b$ and $w_3$ as special.
+Furthermore, the ends of the special edges in the
 vertex $w_3$ have no assigned direction. 
-To all ends of special edges in the vertex 
-$b$ we assign the direction such that among 
-them is an even number with clockwise direction 
-and an odd number with counterclockwise direction.
+To all ends of the special edges in the vertex 
+$b$ we assign the direction in such way that among 
+them there is an even number with the clockwise boundary direction 
+and an odd number with the counterclockwise boundary direction.
 This is always possible, e.g. for a single edge 
-with counterclockwise direction.
+with the counterclockwise boundary direction.
 
 Let $T_k^{\rest}$ be the set of all the 
 maps from the set $Y_k^{\rest}$ with a 
 distinguished white vertex denoted by $w_3$ 
 with a fixed choice of the set of special 
 edges together with the directions of their 
-ends satisfying the conditions just mentioned. 
+ends satisfying the conditions just mentioned above. 
 The unique (up to choice of the root) example 
 of the map from the set $T_{5}^{\rest}$ is 
 shown in \cref{fig:rysalld}. Clearly
@@ -1503,21 +1648,21 @@ shown in \cref{fig:rysalld}. Clearly
 
 \subsection{Goal}
 In this section we will construct three bijections 
-which shows the cardinality of the corresponding sets 
-is equal. Using these equalities and the definitions 
-of these sets we prove \cref{mainthm2}.
+which show the cardinalities of the corresponding sets 
+are equal. Using these equalities and the definitions 
+of these sets we will prove \cref{mainthm2}.
 
 \subsection{Three bijections}
 
-\paragraph{The first bijection.}
+\paragraph{The first bijection between $X_k$ and $T_k^{\odd}$.}
 We start from a map $m \in X_{k}$. As the set of 
 special edges we select all edges of
-the vertex $b_1$. Recall that we have assumed 
+the vertex $b_1$. Recall that we have assumed that
 $\degg(b_1)$ is odd. The ends of the special edges 
 at the vertex $b_1$ have no assigned direction 
 and the other ends have assigned
-the direction counterclockwise. We apply the 
-edge sliding on the map $m$. Then we change 
+the counterclockwise boundary direction. We apply the 
+edge sliding to the map $m$. Then we change 
 the colour of the black vertex $b_1$ to white 
 and its name to $w_3$, and the name of the vertex
 $b_2$ to $b$. Of course, the degree of the vertex
@@ -1528,7 +1673,7 @@ least one edge between each pair of the vertices
 of different colours. We obtain a map from the 
 set $T_{k}^{\odd}$. (At all times one of the edges 
 is selected as the root.) Moreover, each map from the 
-set $T_{k}^{\odd}$ can be produced. Such a
+set $T_{k}^{\odd}$ can be produced in this way. Such a
 transformation is a bijection between the set 
 $X_k$ and the set $T_k^{\odd}$, 
 since the edge sliding is reversible.  
@@ -1543,7 +1688,7 @@ bijection for $k=5$. Thus
 \caption
 {
 The example of the first bijection 
-for the $5$ edged map.
+for the $5$-edged map.
 	\protect\subref{fig:rysodda} 
 		The map from the set $X_{5}$.
 	\protect\subref{fig:rysoddb} 
@@ -1556,15 +1701,15 @@ for the $5$ edged map.
 \label{fig:rysodd}
 \end{figure}
 
-\paragraph{The second bijection.}
+\paragraph{The second bijection between $X_k$ and $T_k^{\even}$.}
 We start from a map $m \in X_{k}$. As the set 
-of special edges we select all edges of
-the vertex $b_2$. Recall that we have assumed 
+of special edges we take all edges of
+the vertex $b_2$. Recall that we have assumed that 
 $\degg(b_2)$ is even. The ends of the special edges 
 at the vertex $b_2$ have no assigned direction
 and the other ends have assigned
-the direction counterclockwise. We apply the 
-edge sliding on the map $m$. Then we change 
+the counterclockwise boundary direction. We apply the 
+edge sliding to the map $m$. Then we change 
 the colour of the black vertex $b_2$ to white 
 and its name to $w_3$, and the name of the vertex
 $b_1$ to $b$. Of course, the degree of the vertex
@@ -1590,26 +1735,27 @@ bijection for $k=5$. Thus
 \caption
 {
 \protect\subref{fig:rysevena}---\protect\subref{fig:rysevend} 
-The example of the second bijection for the $5$ edged map. 
+The example of the second bijection for the $5$-edged map. 
 }
 \label{fig:ryseven}
 \end{figure}
 
-\paragraph{The Third bijection.}
+\paragraph{The third bijection.}
 We start from a map $m \in X_{k}$. As the set of 
 special edges we select all edges of
-the vertex $b_1$. Recall that we have assumed 
+the vertex $b_1$. Recall that we have assumed that
 $\degg(b_1)$ is odd. The ends of the special edges 
 at the vertex $b_1$ have no assigned direction,
 the ends at the vertex $w_1$ have assigned
-the direction counterclockwise and at the vertex 
-$w_2$ have the direction clockwise. We apply the 
-edge sliding on the map $m$. Then we change 
+the counterclockwise boundary direction and at the vertex 
+$w_2$ have the clockwise boundary direction. We apply the 
+edge sliding to the map $m$. Then we change 
 the colour of the black vertex $b_1$ to white 
 and its name to $w_3$, and the name of the vertex
 $b_2$ to $b$. Of course, the degree of the vertex
 $w_3$ does not change and is odd. In addition, 
-$w_3\rightarrow w_1$ and $w_2\rightarrow w_3$,
+$w_3\rightarrow w_1$ and $w_2\rightarrow w_3$ 
+(and $w_1\rightarrow w_2$),
 because any map from the set $X_{k}$ has at 
 least one edge between each pair of the vertices 
 of different colours. We do not necessarily obtain 
@@ -1632,7 +1778,7 @@ bijection for $k=5$. Thus
 \caption
 {
 \protect\subref{fig:rysresta} - \protect\subref{fig:rysrestd} 
-The example of the third bijection for the $5$ edged map.
+The example of the third bijection for the $5$-edged map.
 }
 \label{fig:rysrest}
 \end{figure}
@@ -1656,12 +1802,9 @@ Y_k^{\rest}|-|Y_k| \tag*{by \eqref{ineqodd}, \eqref{ineqeven}, \eqref{ineqrest}}
 
 \section*{Acknowledgements}
 
-I would like to thank my supervisor, Professor Piotr
-Śniady, for his support, understanding, patience, 
-positive outlook, guidance, valuable advice, and 
-useful and constructive recommendations during
-writing this article. I would like to thank also 
-to Doctor Stephen Moore for the help with the 
+I thank my supervisor, Piotr
+Śniady, for his support. I thank also 
+Doctor Stephen Moore for the help with the 
 text editing.
 
 \printbibliography 
